@@ -1,0 +1,4 @@
+/* src/App.css — แบบง่าย ไม่ใช้ @apply */
+@import "tailwindcss";
+
+/* (เอา styles ที่ใช้ @apply ออกทั้งหมดได้เลย แล้วไปเขียน className ใน JSX แทน) */
