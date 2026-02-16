@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ตัวแทนจำหน่ายสินค้า Apple ของแท้</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ฟอนต์ -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- ไอคอน -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Noto Sans Thai', sans-serif;
+    }
+
+    /* สำหรับ Chrome, Safari, Edge */
+    input[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    /* ตัวอย่างสำหรับสินค้าหมด */
+    .sold-out::after {
+      content: "สินค้าหมด";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      z-index: 10;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      /* เต็มความกว้าง parent */
+      aspect-ratio: 4 / 5;
+      /* สัดส่วน 4:5 */
+      overflow: hidden;
+      /* ตัดส่วนเกิน */
+      border-radius: 0.375rem;
+      /* เช่น rounded-md */
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* ภาพครอบเต็มกรอบโดยไม่บิดเบี้ยว */
+    }
+  </style>
+</head>
+
+
+<body class="bg-gray-50">
+  <header class="h-20 flex justify-between items-center px-6 bg-white shadow">
+    <!-- ซ้ายสุด: Hamburger -->
+    <button class="text-gray-400 hover:text-yellow-300">
+      <i class="fa-solid fa-bars fa-xl"></i>
+    </button>
+
+    <!-- กลาง: Search -->
+    <div class="flex-grow mx-6 relative max-w-md">
+      <input type="search" id="search_box" placeholder="ค้นหาสินค้า"
+        class="border rounded px-3 py-1 w-full text-black pr-10" />
+      <button id="clear_btn" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 hidden">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- ขวาสุด: เมนู -->
+    <nav>
+      <ul class="flex space-x-6">
+        <li>
+          <button class="hover:text-yellow-300 text-gray-400 fa-solid fa-house fa-xl" id="fa-house"></button>
+        </li>
+        <li>
+          <button class="hover:text-yellow-300 text-gray-400 fa-solid fa-circle-user fa-xl"
+            id="fa-circle-user"></button>
+        </li>
+        <li>
+          <button class="hover:text-yellow-300 text-gray-400 fa-solid fa-cart-shopping fa-xl"></button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="Filter-Product bg-gray-200 h-10">
+    <h1 class="text-black text-2xl text-center pt-2"><i class="fa-solid fa-filter"></i> กรองข้อมูลสินค้า</h1>
+  </div>
+  <!-- Slider Promotion Samsung -->
+  <div class="Background-Promotion bg-white">
+    <div class="container mx-auto flex flex-col items-center justify-center text-center">
+      <div class="flex justify-center w-[90%] mx-auto transition-transform duration-700 ease-in-out pt-4" id="slider">
+        <img src="img/pic mm/s24u-aem-cover-pc.jpg.webp" class="w-full h-auto object-cover rounded-md"
+          alt="โปรโมชั่น Samsung Galaxy S24" />
+      </div>
+      <div class="Description-Promotion text-black mt-6 w-[90%] mx-auto">
+        <p class="text-gray-800 text-sm leading-relaxed">
+          <strong>Lak Studio</strong> ศูนย์จำหน่าย Samsung อย่างเป็นทางการ พร้อมอัปเดตราคาและโปรโมชั่นรุ่นล่าสุด
+          <span class="text-orange-500 font-semibold">Samsung Galaxy S24, S24+, S24 Ultra</span>
+          รวมถึงรุ่นยอดนิยมก่อนหน้า เช่น
+          <span class="text-blue-600 font-semibold">Samsung Galaxy S23 Series</span>
+          และ
+          <span class="text-orange-500 font-semibold">Samsung Galaxy Z Fold / Flip</span>
+          ครบทุกรุ่น ครบทุกราคา พร้อมบริการผ่อน 0% และโปร Trade-in สุดคุ้ม
+        </p>
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="Sidebar">
+      <div class="flex">
+        <aside class="w-[280px] bg-white p-4 shadow-md border-r mt-16 h-[90vh] flex flex-col justify-between">
+
+          <div class="mb-4">
+            <label class="inline-flex items-center space-x-2">
+              <input type="checkbox" class="accent-yellow-400">
+              <span>Show in-stock only</span>
+            </label>
+          </div>
+
+          <div class="space-y-4 text-sm overflow-auto pr-2 flex-1">
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>CATEGORY</span>
+                <span>+</span>
+              </button>
+            </div>
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>PRICE RANGE</span>
+                <span>-</span>
+              </button>
+              <div class="pt-2">
+
+                <div class="w-full h-1 bg-gray-300 rounded relative">
+                  <div class="absolute left-[10%] right-[10%] h-1 bg-yellow-400 rounded"></div>
+                  <div class="absolute -top-1 left-[10%] w-4 h-4 bg-yellow-400 rounded-full"></div>
+                  <div class="absolute -top-1 right-[10%] w-4 h-4 bg-yellow-400 rounded-full"></div>
+                </div>
+
+                <div class="flex items-center space-x-2 mt-3">
+                  <input type="text" value="2000" class="bg-gray-100 px-2 py-1 w-full text-center rounded">
+                  <span>-</span>
+                  <input type="text" value="100000" class="bg-gray-100 px-2 py-1 w-full text-center rounded">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>BRAND</span>
+                <span>+</span>
+              </button>
+            </div>
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>SPEAKER TYPE</span>
+                <span>+</span>
+              </button>
+            </div>
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>CONNECTIVITY</span>
+                <span>+</span>
+              </button>
+            </div>
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>BATTERY LIFE</span>
+                <span>+</span>
+              </button>
+            </div>
+
+            <div>
+              <button class="w-full flex justify-between items-center font-semibold border-b py-2">
+                <span>WATER RESISTANT</span>
+                <span>+</span>
+              </button>
+            </div>
+
+          </div>
+          <div class="pt-6">
+            <button class="text-yellow-500 font-medium hover:underline">Clear all Filters</button>
+          </div>
+        </aside>
+        <!-- สินค้าแนะนำ -->
+        <section class="max-w-[1200px] mx-auto mt-8 px-4">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">สินค้าแนะนำ</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+
+            <!-- Samsung Galaxy S24 -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung Galaxy S24.jpeg" alt="Samsung Galaxy S24"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S24</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿29,900 - ฿37,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿2,500</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <!-- OPPO Reno 12 Pro -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/OPPO Reno 12 Pro.jpeg" alt="OPPO Reno 12 Pro"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>OPPO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">OPPO Reno 12 Pro</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿18,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <!-- Vivo V40 (สินค้าหมด) -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow p-4 flex flex-col items-center overflow-hidden sold-out">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Vivo V40.jpeg" alt="Vivo V40" class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>VIVO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Vivo V40</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿12,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <!-- Xiaomi 14 -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Xiaomi 14.jpeg" alt="Xiaomi 14" class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>XIAOMI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Xiaomi 14</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿27,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">รับฟรี Xiaomi Watch</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <!-- realme GT 6 -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/realme GT6.jpg" alt="realme GT 6"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>REALME</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">realme GT 6</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿16,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">Snapdragon 8s Gen 3</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <!-- OnePlus 12 -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/OnePlus 12.jpeg" alt="OnePlus 12"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>ONEPLUS</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">OnePlus 12</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿29,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">กล้อง Hasselblad</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <!-- Sumsung Galaxy S23 FE -->
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung Galaxy S23.jpg" class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S23 FE</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿18,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/OPPO Find X7 Ultra.jpeg" alt="OPPO Find X7 Ultra"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>OPPO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">OPPO Find X7 Ultra</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿34,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Vivo X100 Pro.jpeg" alt="Vivo X100 Pro"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>VIVO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Vivo X100 Pro</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿32,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Redmi Note 13 Pro+.jpeg" alt="Redmi Note 13 Pro+"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>XIAOMI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Redmi Note 13 Pro+</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿12,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/realme 12 Pro+.jpeg" alt="realme 12 Pro+"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>REALME</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">realme 12 Pro+</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿15,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/OnePlus 12R.jpeg" alt="OnePlus 12R"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>ONEPLUS</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">OnePlus 12R</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿19,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung Galaxy Z Flip 6.jpeg" alt="Samsung Galaxy Z Flip 6"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Galaxy Z Flip 6</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿39,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Xiaomi Mix Fold 4.jpeg" alt="Xiaomi Mix Fold 4"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>XIAOMI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Xiaomi Mix Fold 4</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿54,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/OPPO Find N3 Flip.jpeg" alt="OPPO Find N3 Flip"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>OPPO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">OPPO Find N3 Flip</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿32,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/01_productimage_alt__coralred_1500x1500_250618_z5bxfkbbnwlhxg0j.jpg"
+                  alt="Samsung Galaxy Z Flip7" class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>Samsung</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy Z Flip7</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿37,900 - ฿42,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung-Smartphone-Fold7-Jet-Black-01 2.jpg" alt="Samsung Galaxy Z Fold7 (5G)"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy Z Fold7 (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿64,900 - ฿85,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung Galaxy S25 Ultra (5G).jpg" alt="Samsung Galaxy S25 Ultra (5G)"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S25 Ultra (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿40,900 - ฿46,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿6,000</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung Galaxy S24 Ultra (5G).jpg" alt="Samsung Galaxy S24 Ultra (5G)"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S24 Ultra (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿32,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿10,000</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/vivo-Smartphone-X200-FE-Blue-Breeze-5G-01.jpg" alt=" vivo X200 FE (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>VIVO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">vivo X200 FE (5G)</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿24,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Huawei Pura 80 Pro.jpg" alt=" Huawei Pura 80 Pro (HMS)"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>HUAWEI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Huawei Pura 80 Pro (HMS) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿38,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Nothing 3 (5G).jpg" alt=" Nothing 3 (5G)"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>NOTING</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Nothing 3 (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿27,999 - ฿30,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Nothing 3a Pro(5G).jpg" alt=" Nothing 3a Pro(5G)"
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>NOTING</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Nothing 3a Pro (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿17,499</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/iQOO Z10 (5G).jpg" alt=" iQOO Z10 (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>IQOO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> iQOO Z10 (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿10,490 - ฿10,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/OPPO Reno14 Pro (5G).jpg" alt=" OPPO Reno14 Pro (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>OPPO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> OPPO Reno14 Pro (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿24,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/iQOO Neo 10 (5G).jpg " alt=" iQOO Neo 10 (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>IQOO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> iQOO Neo 10(5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿15,900 - ฿17,900</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/CMF 2 Pro (5G).jpg" alt=" CMF 2 Pro (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>CMF</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> CMF 2 Pro (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿8,999 - ฿9,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Xiaomi Redmi Note 14 (5G).jpg" alt=" Xiaomi Redmi Note 14 (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>XIAOMI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Xiaomi Redmi Note 14 (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿5,699</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-centerr">ประหยัดไป ฿300</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Xiaomi Redmi Note 14 pro (5G).jpg" alt=" Xiaomi Redmi Note 14 Pro (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>XIAOMI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Xiaomi Redmi Note 14 Pro (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿10,490</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,500</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Infinix GT 30 Pro (5G).jpg" alt=" Infinix GT 30 Pro (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>INFINIX</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Infinix GT 30 Pro (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿9,999 - ฿12,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Realme C71.jpg" alt=" Realme C71 "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>REALME</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Realme C71 </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿3,999 - ฿4,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Honor 400 Lite (5G).jpg " alt=" Honor 400 Lite (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>HONOR</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Honor 400 Lite (5G) </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿8,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow p-4 flex flex-col items-center overflow-hidden sold-out">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/ZTE Redmagic 10 Pro.jpg "
+                  alt=" ZTE Redmagic 10 Pro (16+512GB) Transparent Black (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>ZTE</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> ZTE Redmagic 10 Pro (16+512GB) Transparent Black (5G)
+              </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿34,990</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#"
+              class="relative bg-white rounded-lg shadow p-4 flex flex-col items-center overflow-hidden sold-out">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Samsung Galaxy A16.jpg " alt=" Samsung Galaxy A16 "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>SAMSUNG</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> Samsung Galaxy A16</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿5,499</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,500</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#" class="relative bg-white rounded-lg shadow p-4 flex flex-col items-center overflow-hidden t">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/vivo V60 (5G).jpg " alt="  vivo V60 (5G) "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>VIVO</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center"> vivo v60 (5G)</h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿15,999 - ฿17,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+
+            </a>
+
+            <a href="#" class="relative bg-white rounded-lg shadow p-4 flex flex-col items-center overflow-hidden ">
+              <div class="image-wrapper w-full aspect-[4/5] overflow-hidden rounded-md mb-3">
+                <img src="img/pic mm/Xiaomi Redmi 15C.jpg" alt=" Xiaomi Redmi 15C "
+                  class="w-full h-40 object-cover rounded-md mb-3" />
+              </div>
+              <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+                <span>XIAOMI</span>
+                <span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+              </div>
+              <h3 class="text-gray-800 font-medium text-center">Xiaomi Redmi 15C </h3>
+              <p class="text-red-600 font-semibold mt-1 text-center">฿3,499 - ฿3,999</p>
+              <p class="text-gray-500 text-xs mt-0.5 text-center">ประกันศูนย์ 1 ปี</p>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+    </div>
+  </form>
+  <!-- ส่วนท้าย -->
+  <footer class="bg-white p-4 text-center text-sm text-gray-400">
+    <p>&copy; 2025 Lak Studio สงวนลิขสิทธิ์</p>
+    <p class="mt-1">
+      <a href="#" class="hover:text-cyan-400">ข้อกำหนดในการให้บริการ</a>
+      <span class="mx-2">|</span>
+      <a href="#" class="hover:text-cyan-400">นโยบายความเป็นส่วนตัว</a>
+    </p>
+  </footer>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>หน้าหลัก</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ฟอนต์ -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500&display=swap" rel="stylesheet">
+  <!-- ไอคอน -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+      body {
+      font-family: 'Noto Sans Thai', sans-serif;
+    }
+
+    /* สำหรับ Chrome, Safari, Edge */
+    input[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    /* ตัวอย่างสำหรับสินค้าหมด */
+    .sold-out::after {
+      content: "สินค้าหมด";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      z-index: 10;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      /* เต็มความกว้าง parent */
+      aspect-ratio: 4 / 5;
+      /* สัดส่วน 4:5 */
+      overflow: hidden;
+      /* ตัดส่วนเกิน */
+      border-radius: 0.375rem;
+      /* เช่น rounded-md */
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* ภาพครอบเต็มกรอบโดยไม่บิดเบี้ยว */
+    }
+  </style>
+</head>
+
+<body class="bg-gray-200 text-white">
+
+  <!-- Header -->
+  <header class="h-20 flex justify-between items-center px-6 bg-white shadow">
+    <!-- ซ้ายสุด: Hamburger -->
+    <button class="text-gray-400 hover:text-yellow-300">
+      <i class="fa-solid fa-bars fa-xl"></i>
+    </button>
+
+    <!-- กลาง: Search -->
+    <div class="flex-grow mx-6 relative max-w-md">
+      <input type="search" id="search_box" placeholder="ค้นหาสินค้า"
+        class="border rounded px-3 py-1 w-full text-black pr-10" />
+      <button id="clear_btn" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 hidden">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- ขวาสุด: เมนู -->
+    <nav>
+      <ul class="flex space-x-6">
+        <li>
+          <button class="hover:text-yellow-300 text-gray-400 fa-solid fa-house fa-xl" id="fa-house"></button>
+        </li>
+        <li>
+          <button class="hover:text-yellow-300 text-gray-400 fa-solid fa-circle-user fa-xl"
+            id="fa-circle-user"></button>
+        </li>
+        <li>
+          <button class="hover:text-yellow-300 text-gray-400 fa-solid fa-cart-shopping fa-xl"></button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Slider -->
+  <section id = "slider-container" class="relative w-full max-w-[1200px] aspect-[3/1] mx-auto mt-4 overflow-hidden rounded-lg shadow-lg">
+    <div class="flex transition-transform duration-700 ease-in-out h-full" id="slider">
+      <img src="img/index/Sider.jpg" class="w-full h-full object-cover flex-shrink-0"
+        alt="โปรโมชั่น 1">
+        <img src="img/index/New Arrival Sidder.jpg" class="w-full h-full object-cover flex-shrink-0"
+        alt="โปรโมชั่น 2">
+        <img src="img/index/NewProductVivoV60-1752x640-280825_300825-category_banner_medium.jpg" class="w-full h-full object-cover flex-shrink-0"
+        alt="โปรโมชั่น 3">
+    </div>
+
+    <!-- ปุ่มเลื่อน -->
+    <button id="prev"
+      class="absolute left-2 top-1/2 -translate-y-1/2 bg-white text-gray-800 px-3 py-2 rounded-full shadow hover:bg-yellow-300">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button id="next"
+      class="absolute right-2 top-1/2 -translate-y-1/2 bg-white text-gray-800 px-3 py-2 rounded-full shadow hover:bg-yellow-300">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- จุดแสดงสถานะสไลด์ -->
+    <div id="dots" class="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2"></div>
+  </section>
+
+  <!-- ปุ่มเมนู 5 ปุ่ม -->
+  <div class="grid grid-cols-5 w-full mt-4">
+    <a href="promotion.html"
+      class="text-center bg-white text-gray-800 font-medium py-4 border border-gray-200 hover:bg-yellow-300 transition">โปรโมชั่น</a>
+    <a href="iphone.html"
+      class="text-center bg-white text-gray-800 font-medium py-4 border border-gray-200 hover:bg-yellow-300 transition">ไอโฟน</a>
+    <a href="mobile.html"
+      class="text-center bg-white text-gray-800 font-medium py-4 border border-gray-200 hover:bg-yellow-300 transition">โทรศัพท์มือถือ</a>
+    <a href="accessories.html"
+      class="text-center bg-white text-gray-800 font-medium py-4 border border-gray-200 hover:bg-yellow-300 transition">อุปกรณ์เสริม</a>
+    <a href="audio.html"
+      class="text-center bg-white text-gray-800 font-medium py-4 border border-gray-200 hover:bg-yellow-300 transition">ลำโพง
+      & หูฟัง</a>
+  </div>
+
+
+  <!-- สินค้าแนะนำiPhone -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">iPhone</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/iphone 16 (2).jpg" alt="Apple iPhone 16" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>APPLE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Apple iPhone 16</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿26,800 - ฿38,800</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,100</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/i16 pro.jpg" alt="Apple iPhone 16 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>APPLE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Apple iPhone 16 Pro</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿33,700 - ฿53,700</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿6,200</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/16promaxa.jpg" alt="Apple iPhone 16 Pro Max" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>APPLE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Apple iPhone 16 Pro Max</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿41,700 - ฿57,700</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿7,200</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iPhone_15_Pro_Blue_Titanium_1-square_medium.jpg" alt="Apple iPhone 15 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>APPLE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Apple iPhone 15 Pro</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿28,900 - ฿46,400</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿21,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iphone-15-promax-natural-Titanium-square_medium.jpg" alt="Apple iPhone 15 Pro Max" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>APPLE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Apple iPhone 15 Pro Max</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿34,900 - ฿39,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿22,000</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iPhone_15_Pink_1-square_medium.jpg" alt="iPhone 15" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>APPLE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Apple iPhone 15</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿20,900 - 41,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿6,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+    <!-- สินค้าแนะนำ Samsung -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Samsung</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/samsung-smartphone-galaxy-s25-ultra-12256-titanium-gray-5g-8-square_medium.jpg" alt="Samsung Galaxy S25 Ultra" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Samsung</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S25 Ultra (12+512GB) Titanium Gray (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿40,900 - 46,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿6,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Samsung-Smartphone-Fold7-Jet-Black-08-square_medium.jpg" alt="Samsung Galaxy Z Fold7" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Samsung</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy Z Fold7 (12+256GB) Jet Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿64,900 - ฿85,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/samsung-smartphone-galaxy-s25-12256-blue-5g-8-square_medium.jpg" alt="Samsung Galaxy S25" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Samsung</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S25 (12+256GB) Icyblue (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿24,900 - ฿29,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿5,000</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/samsung-smartphone-galaxy-s25-12256-MINT-5g-01-square_medium.jpg" alt="Samsung Galaxy S25+" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Samsung</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S25+ (12+256GB) Mint (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿31,900 - ฿36,400</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿5,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Samsung-Smartphone-z-Flip7-Coral-09-square_medium.jpg" alt="Samsung Galaxy Z Flip7" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Samsung</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy Z Flip7 (12+256GB) Coral (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿37,900 - ฿42,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Samsung--Galaxy-S24-ULTRA-BLACK-5G-8-square_medium.jpg" alt="Samsung Galaxy S24 Ultra" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Samsung</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Samsung Galaxy S24 ULTRA (12+256GB) BLACK (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿32,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿10,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำOppo -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Oppo</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/OPPO-Smartphone-A3-Starlight-White---1-square_medium.jpg" alt="Oppo A3" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Oppo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">OPPO A3 (8+128GB) Starlight White</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,499 - 6,499</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/OPPO-A3-Pro--Moonlight-Purple-5G--1-square_medium.jpg" alt="Oppo A3 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Oppo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">OPPO A3 Pro (6+128GB) Moonlight Purple (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿6,249 - ฿7,099</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,900</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/OPPO-Smartphone-A3x--Nebula-Red-1-square_medium.jpg" alt="Oppo A3x" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Oppo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">OPPO A3x (4+128GB) Nebula Red</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,999 - ฿4,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/OPPO-Smartphone-Find-X8-Shell-Pink--2-square_medium.jpg" alt="Oppo Find X8" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Oppo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">OPPO Find X8 (16+512GB) Shell Pink</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿29,999 - ฿33,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/OPPO-Reno12--Sunset-Pink--1-square_medium.jpg" alt="Oppo Reno12" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Oppo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">OPPO Reno12 (8+128GB) Sunset Pink</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿13,999 - ฿15,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/oppo-smartphone-reno13-12256-luminous-blue-5g-1-square_medium.jpg" alt="Oppo Reno13" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Oppo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">OPPO Reno13 (12+256GB) Luminous Blue (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿16,999 - 19,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำ Vivo -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Vivo</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/สมาร์ทโฟน vivo V60 (12+256GB) Berry Purple (5G).jpg" alt="Vivo V60" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Vivo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Vivo V60 (12+256GB) Ancora Red</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿15,999 - ฿17,999</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/vivo-Smartphone-V40-Sunglow-peach-5G---1-square_medium.jpg" alt="Vivo V40" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Vivo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Vivo V40 (12+256GB) Sunglow Peach (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿12,499 - ฿14,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,500</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/vivo-smartphone-y29-8128gb-marble-white-01-square_medium.jpg" alt="Vivo Y29" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Vivo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Vivo Y29 (8+128GB) Marble White</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/vivo-smartphone-x200-pro-16512gb-titanium-grey-1-square_medium.jpg" alt="Vivo X200 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Vivo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Vivo X200 Pro (16+512GB) Titanium Grey (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿39,999</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/vivo-Smartphone-Y19s-Pearl-Silver--4-square_medium.jpg" alt="Vivo Y19s" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Vivo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Vivo Y19s (4+64GB) Pearl Silver</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿3,499 - ฿4,399</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/vivo-Smartphone-V40-Pro-Stellar-Silver-5G--1-square_medium.jpg" alt="Vivo V40 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Vivo</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Vivo V40 Pro (12+256GB) Stellar Silver (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿20,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿2,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำ Xiaomi -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Xiaomi</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Xiaomi-Smartphone-14T-Lemon-Green----2-square_medium.jpg" alt="Xiaomi 14T (12+256GB) Lemon Green (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Xiaomi</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Xiaomi 14T (12+256GB) Lemon Green (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿14,990 - 16,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Xiaomi-14T-Pro-Titan-Black-5G-2-square_medium.jpg" alt="Xiaomi 14T Pro (12+256GB) Titan Black (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Xiaomi</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Xiaomi 14T Pro (12+256GB) Titan Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿19,999 - ฿22,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿2,000</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/xiaomi-smartphone-15-12512-white-5g-01-square_medium.jpg" alt="Xiaomi 15 (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Xiaomi</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Xiaomi 15 (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿23,990 - ฿26,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/xiaomi-smartphone-15-ultra-16512-silve-chrome-5g-01-square_medium.jpg" alt="Xiaomi 15 Ultra (12+512GB) Silver Chrome (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Xiaomi</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Xiaomi 15 Ultra (12+512GB) Silver Chrome (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿39,990 - ฿43,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Xiaomi-Smartphone-Redmi-14C--1-square_medium.jpg" alt="Xiaomi Redmi 14C (6+128GB) Dreamy Purple" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Xiaomi</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Xiaomi Redmi 14C (6+128GB) Dreamy Purple</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿3,399 - ฿3,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/xiaomi-smartphone-redmi-note-14-midnight-black-----01-square_medium.jpg" alt="Xiaomi 14T (12+256GB) 5G" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Xiaomi</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Xiaomi 14T (12+256GB) Midnight Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,699</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿300</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำCmf -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">CMF</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/cmf-smartphone-2-pro-8128gb-orange-5g-03-square_medium.jpg" alt="CMF 2 Pro (8+128GB) Orange (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>CMF</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">CMF 2 Pro (8+128GB) Orange (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿8,999 - 9,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/cmf-by-nothing-watch-pro-2-orange-1-square_medium.jpg" alt="CMF By Nothing Watch Pro 2 (Orange)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>CMF</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">CMF By Nothing Watch Pro 2 (Orange)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,699</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/CMF-Buds-Pro-2-Orange-1-square_medium.jpg" alt="CMF Buds Pro 2 (Orange)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>CMF</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">CMF Buds Pro 2 (Orange)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,399</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿300</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+ <!-- สินค้าแนะนำ iQOO-->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">iQOO</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iqoo-smartphone-13-12256gb-alpha-black-5g-1-square_medium.jpg" alt="iQOO 13" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>iQOO</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">iQOO 13 (12+256GB) Alpha Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿25,900 - ฿28,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,100</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iQOO-Smartphone-Z9-Lunar-Titanium-1-square_medium.jpg" alt="iQOO Z9 (12+256GB) Lunar Titanium (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>iQOO</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">iQOO Z9 (12+256GB) Lunar Titanium (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿10,490</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿200</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iqoo-smartphone-neo-10-12512gb-cosmic-black-5g-01-square_medium.jpg" alt="iQOO Neo 10 (12+512GB) Cosmic Black (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>iQOO</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">iQOO Neo 10 (12+512GB) Cosmic Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿15,900 - ฿17,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป 1,200</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/iqoo-smartphone-z10-8256gb-tech-silver-5g-07-square_medium.jpg" alt="iQOO Z10 (8+256GB) Tech Silver (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>iQOO</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">iQOO Z10 (8+256GB) Tech Silver (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿10,490 - ฿10,900</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Imoo-Watch-Phone-Z1-Pink-1-square_medium.jpg" alt="iQOO Watch Phone Z1 Pink" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>iMOO</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">iQOO Watch Phone Z1 Pink</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿3,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿200</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/imoo-openbuds-e5-white-2-square_medium.jpg" alt="หูฟังไร้สาย imoo Openbuds E5 White" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>iMOO</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">หูฟังไร้สาย imoo Openbuds E5 White</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,499 </p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿300</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+    <!-- สินค้าแนะนำZTE -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">ZTE</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/zte-smartphone-blade-a55-4128gb-blue-1-square_medium.jpg" alt="ZTE Blade A55 (4+128GB) Blue" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>ZTE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">ZTE Blade A55 (4+128GB) Blue</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,699 </p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿150</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/zte-smartphone-nubia-focus-pro-8256gb-classic-black-5g-1-square_medium.jpg" alt="ZTE Nubia Focus Pro (8+256GB) Classic black (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>ZTE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">ZTE Nubia Focus Pro (8+256GB) Classic black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿600</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/ZTE-Smartphone-nubia-Music-POP-Art--7-square_medium.jpg" alt="ZTE Nubia Music POP Art (7)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>ZTE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">ZTE Nubia Music POP Art (7)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,799</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿400</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/zte-nubia-neo-2-sliver-5g-1-square_medium.jpg" alt="ZTE Nubia Neo 2 (8+128GB) Silver (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>ZTE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">ZTE Nubia Neo 2 (8+128GB) Silver (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿400</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/สมาร์ทโฟน ZTE Nubia V70 (8+256GB) Sunshine Gold.jpg" alt="ZTE Nubia V70" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>ZTE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">ZTE Nubia V70 (8+256GB) Sunshine Gold)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿4,499</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/ZTE-Nubia-V60-Design-Blue-1-square_medium.jpg" alt="ZTE Nubia V60 Design (6+256GB) Blue" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>ZTE</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">ZTE Nubia V60 Design (6+256GB) Blue</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,999 - 3,699</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำ Infinix-->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Infinix</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Infinix-Smartphone-Hot50-Titanium-Grey---1-square_medium.jpg" alt="Infinix Hot 50 (8+128GB) Titanium Gray (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Infinix</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Infinix Hot 50 (8+128GB) Titanium Gray (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿4,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿200</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Infinix-Smartphone-Hot50i-Sage-Green-1-square_medium.jpg" alt="Infinix Hot 50i (8+128GB) Sage Green (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Infinix</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Infinix Hot 50i (8+128GB) Sage Green (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿3,699</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿200</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Infinix-Hot50-Pro-Sleek-Black--2-square_medium.jpg" alt="Infinix Hot 50 Pro (12+256GB) Sleek Black (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Infinix</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Infinix Hot 50 Pro (12+256GB) Sleek Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,499</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿200</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Infinix-Note-40-Pro-Vintage-Green-5G--1-square_medium.jpg" alt="Infinix Note 40 Pro (12+256GB) Vintage Green (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Infinix</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Infinix Note 40 Pro (12+256GB) Vintage Green (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿9,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿2,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Infinix-Smart-9-1-square_medium.jpg" alt="Infinix Smart 9 (2+32GB) Black (4G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Infinix</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Infinix Smart 9 (2+32GB) Black (4G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,699 - 2,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿200</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/infinix-smartphone-note-50-pro-12256-enchanted-purple-5g-01-square_medium.jpg" alt="Infinix Note 50 Pro (12+256GB) Enchanted Purple (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Infinix</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Infinix Note 50 Pro (12+256GB) Enchanted Purple (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿13,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำ Realme -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Realme</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/realme-smartphone-c75-8256-lightning-gold-1-square_medium.jpg" alt="Realme C75 (8+256GB) Lightning Gold" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Realme</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Realme C75 (8+256GB) Lightning Gold</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,499 - 6,299</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿700</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Realme-Note-60x-Marble-Black------01-square_medium.jpg" alt="Realme Note 60x (12+256GB) Marble Black" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Realme</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Realme Note 60x (12+256GB) Marble Black</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,499</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Realme-Note60-Voyage-Blue--1-square_medium.jpg" alt="Realme Note 60x (12+256GB) Voyage Blue" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Realme</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Realme Note 60x (12+256GB) Voyage Blue</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿3,499 - ฿3,599</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿300</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/realme-smartphone-14-12256-storm-titatium-5g-01-square_medium.jpg" alt="Realme 14 (12+256GB) Storm Titanium" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Realme</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Realme 14 (12+256GB) Storm Titanium</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿10,999 - ฿12,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/realme-smartphone-14-pro-12512-pearl-white-5g-01-square_medium.jpg" alt="Realme 14 Pro (12+256GB) Pearl White" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Realme</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Realme 14 Pro (12+256GB) Pearl White</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿13,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/realme-smartphone-14t-8256-obsidian-black-5g-01-square_medium.jpg" alt="Realme 14T (12+256GB) Obsidian Black (5G)" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Realme</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Realme 14T (12+256GB) Obsidian Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿8,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿100</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำHonor -->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Honor</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Honor-200-Moonlight-White-1-square_medium.jpg" alt="Honor 200" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Honor</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Honor 200 (12+512GB)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿11,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/honor-smartphone-magic-7-pro-12512gb-lunar-shadow-grey-5g-7-square_medium.jpg" alt="Honor Magic 7 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Honor</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Honor Magic 7 Pro (12+512GB) Lunar Shadow Grey (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿30,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿2,000</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Honor-200-Ocean-Cyan-1-square_medium.jpg" alt="Honor 200" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Honor</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Honor 200 (12+256GB) Ocean Cyan (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿16,490</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,500</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Honor-Smartphone-Magic-6-Pro-Black-1-square_medium.jpg" alt="Honor Magic 6 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Honor</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Honor Magic 6 Pro (12+256GB) Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿28,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿6,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/honor-smartphone-200-smart-8256gb-forest-green-5g-1-square_medium.jpg" alt="Honor 200" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Honor</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Honor 200 (12+256GB) Forest Green (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿6,499</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/honor-smartphone-x9c-12256gb-titanium-black-5g-01-square_medium.jpg" alt="Xiaomi X9C" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Honor</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Honor X9C (12+256GB) Titanium Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿9,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  <!-- สินค้าแนะนำ Nothing-->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Nothing</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/nothing-smartphone-3a-12256gb-black-5g-02-square_medium.jpg" alt="Nothing Phone" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Nothing</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Nothing Phone (12+256GB) Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿12,499 - 14,499</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿4,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/nothing-smartphone-3-16512gb-black-5g-01-square_medium.jpg" alt="Nothing Phone" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Nothing</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Nothing Phone (12+256GB) Black (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿27,999 - ฿30,999</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿5,000</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/cmf-by-nothing-watch-pro-2-orange-1-square_medium (1).jpg" alt="Nothing Watch" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Nothing</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Nothing Watch Pro 2 (Orange)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿2,699</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿500</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/nothing-smartphone-3a-pro-12256gb-grey-5g-18-square_medium.jpg" alt="Nothing Phone" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Nothing</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Nothing Phone (12+256GB) Grey (5G)</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿17,499</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+   <!-- สินค้าแนะนำ Huawei-->
+  <section class="max-w-[1200px] mx-auto mt-8 px-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Huawei</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <!-- Card 1 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/huawei-tablet-matepad-115-wi-fi-8256gb-violet-2025-hms-6942103165825-2-square_medium.jpg" alt="Huawei Tablet" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Huawei</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Huawei Tablet MatePad 11.5 (Wi-Fi) (8+256GB) Violet</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿12,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿4,000</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Huawei-Pura-70-Pro-White---1-square_medium.jpg" alt="Huawei Pura 70 Pro" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Huawei</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Huawei Pura 70 Pro (12+256GB) White</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿31,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿3,000</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/Huawei-Smartphone-Pura-70-Ultra-Green--1-square_medium.jpg" alt="Huawei Pura 70 Ultra" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Huawei</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Huawei Pura 70 Ultra (12+256GB) Green</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿39,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿5,000</p>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/huawei-smartphone-mate-x6-12512gb-nebula-red-hms-1-square_medium.jpg" alt="Huawei Mate X6" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Huawei</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Huawei Mate X6 (12+512GB) Nebula Red</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿59,990 - ฿66,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿7,000</p>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/huawei-smartphone-mate-xt-161t-red-hms-01-square_medium.jpg" alt="Huawei Mate XT" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Huawei</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Huawei Mate XT (12+256GB) Red</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿119,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿9,000</p>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#" class="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center overflow-hidden">
+      <div class="image-wrapper w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
+      <img src="img/index/huawei-smartphone-nova-y73-8256gb-blue-hms-01-square_medium.jpg" alt="Huawei Nova Y73" class="w-full h-40 object-cover rounded-md mb-3" />
+      </div>
+      <div class="w-full flex justify-between text-xs text-gray-500 font-semibold mb-1">
+        <span>Huawei</span><span class="bg-yellow-300 rounded px-1">ผ่อน 0%</span>
+      </div>
+      <h3 class="text-gray-800 font-medium text-center">Huawei Nova Y73 (8+256GB) Blue</h3>
+      <p class="text-red-600 font-semibold mt-1 text-center">฿5,990</p>
+      <p class="text-gray-500 text-xs mt-0.5 text-center">ประหยัดไป ฿1,000</p>
+    </a>
+      </div> <!-- ปิดกริดให้ครบ -->
+</section>
+  </form>
+    <!-- ส่วนท้าย -->
+    <footer class="bg-white p-4 text-center text-sm text-gray-400">
+        <p>&copy; 2025 Lak Studio สงวนลิขสิทธิ์</p>
+        <p class="mt-1">
+            <a href="#" class="hover:text-cyan-400">ข้อกำหนดในการให้บริการ</a>
+            <span class="mx-2">|</span>
+            <a href="#" class="hover:text-cyan-400">นโยบายความเป็นส่วนตัว</a>
+        </p>
+    </footer>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
